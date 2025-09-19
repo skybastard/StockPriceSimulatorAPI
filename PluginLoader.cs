@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Contracts;
 
 namespace StockPriceSimulatorAPI
 {
@@ -6,14 +7,17 @@ namespace StockPriceSimulatorAPI
     {
         private readonly List<IDataFormatter> _formatters = new();
 
+
         public PluginLoader(string pluginPath)
         {
+
+
             foreach (var dll in Directory.GetFiles(pluginPath, "*.dll"))
             {
                 var assembly = Assembly.LoadFrom(dll);
 
                 var types = assembly.GetTypes()
-                    .Where(t => typeof(IDataFormatter).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
+                    .Where(t => typeof(Contracts.IDataFormatter).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract) ; 
 
                 foreach (var type in types)
                 {

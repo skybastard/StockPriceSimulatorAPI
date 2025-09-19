@@ -7,8 +7,7 @@ namespace StockPriceSimulatorAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-           
+         
             var pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "plugins");
 
             // Register services

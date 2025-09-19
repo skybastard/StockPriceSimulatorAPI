@@ -5,9 +5,11 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockPriceSimulatorAPI", "StockPriceSimulatorAPI.csproj", "{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonFormatter", "..\JsonFormatter\JsonFormatter.csproj", "{2B9E97BC-5212-495C-B289-A1EB75896ABF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "..\Contracts\Contracts.csproj", "{CC36ABC6-53F3-498C-8FE8-076188A025F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvFormatter", "..\CsvFormatter\CsvFormatter.csproj", "{6BA12413-C2BB-49E6-80AD-335F88B819BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvFormatter", "..\CsvFormatter\CsvFormatter.csproj", "{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonFormatter", "..\JsonFormatter\JsonFormatter.csproj", "{6CE3E852-5638-4007-B54E-9461055F260E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B9E97BC-5212-495C-B289-A1EB75896ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B9E97BC-5212-495C-B289-A1EB75896ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B9E97BC-5212-495C-B289-A1EB75896ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B9E97BC-5212-495C-B289-A1EB75896ABF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BA12413-C2BB-49E6-80AD-335F88B819BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BA12413-C2BB-49E6-80AD-335F88B819BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BA12413-C2BB-49E6-80AD-335F88B819BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BA12413-C2BB-49E6-80AD-335F88B819BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC36ABC6-53F3-498C-8FE8-076188A025F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC36ABC6-53F3-498C-8FE8-076188A025F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC36ABC6-53F3-498C-8FE8-076188A025F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC36ABC6-53F3-498C-8FE8-076188A025F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE3E852-5638-4007-B54E-9461055F260E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE3E852-5638-4007-B54E-9461055F260E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE3E852-5638-4007-B54E-9461055F260E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE3E852-5638-4007-B54E-9461055F260E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
