@@ -1,0 +1,6 @@
+@StockPriceSimulatorAPI_HostAddress = https://localhost:5001/swagger
+
+GET {{StockPriceSimulatorAPI_HostAddress}}
+Accept: application/json
+
+###
