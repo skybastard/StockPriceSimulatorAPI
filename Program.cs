@@ -1,3 +1,4 @@
+using Microsoft.OpenApi;
 
 namespace StockPriceSimulatorAPI
 {
@@ -7,13 +8,15 @@ namespace StockPriceSimulatorAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Register StockSimulator as singleton
+           
+            var pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "plugins");
+
+            // Register services
             builder.Services.AddSingleton<StockSimulator>();
-
-            // Background service for price updates
             builder.Services.AddHostedService<PriceUpdateService>();
+            builder.Services.AddSingleton(new PluginLoader(pluginPath));
 
-            // Add Swagger services to try the REST endpoints
+            // Add Swagger services
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -59,6 +62,27 @@ namespace StockPriceSimulatorAPI
                 }
             });
 
+            //app.MapGet("/formatted-prices", (StockSimulator simulator, PluginLoader loader) =>
+            //{
+            //    var outputs = new List<object>();
+
+            //    foreach (var stock in simulator.GetAllStocks())
+            //    {
+            //        foreach (var formatter in loader.GetFormatters())
+            //        {
+            //            outputs.Add(new
+            //            {
+            //                stock.Name,
+            //                Formatter = formatter.GetType().Name,
+            //                Output = formatter.FormatPrice(stock.Name, stock.CurrentPrice, DateTime.Now)
+            //            });
+            //        }
+            //    }
+
+            //    return outputs;
+            //});
+
+
             app.Run();
         }
 
@@ -79,7 +103,7 @@ namespace StockPriceSimulatorAPI
             {
                 while (!stoppingToken.IsCancellationRequested)
                 {
-                        _simulator.UpdatePrices();
+                    _simulator.UpdatePrices();
 
                     await Console.Out.WriteLineAsync();
                     await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);

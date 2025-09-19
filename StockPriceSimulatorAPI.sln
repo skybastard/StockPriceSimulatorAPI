@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockPriceSimulatorAPI", "StockPriceSimulatorAPI.csproj", "{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonFormatter", "..\JsonFormatter\JsonFormatter.csproj", "{2B9E97BC-5212-495C-B289-A1EB75896ABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvFormatter", "..\CsvFormatter\CsvFormatter.csproj", "{6BA12413-C2BB-49E6-80AD-335F88B819BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B9E97BC-5212-495C-B289-A1EB75896ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B9E97BC-5212-495C-B289-A1EB75896ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B9E97BC-5212-495C-B289-A1EB75896ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B9E97BC-5212-495C-B289-A1EB75896ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BA12413-C2BB-49E6-80AD-335F88B819BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BA12413-C2BB-49E6-80AD-335F88B819BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BA12413-C2BB-49E6-80AD-335F88B819BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BA12413-C2BB-49E6-80AD-335F88B819BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
