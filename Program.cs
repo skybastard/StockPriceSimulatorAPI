@@ -62,25 +62,25 @@ namespace StockPriceSimulatorAPI
                 }
             });
 
-            //app.MapGet("/formatted-prices", (StockSimulator simulator, PluginLoader loader) =>
-            //{
-            //    var outputs = new List<object>();
+            app.MapGet("/formatted-prices", (StockSimulator simulator, PluginLoader loader) =>
+            {
+                var outputs = new List<object>();
 
-            //    foreach (var stock in simulator.GetAllStocks())
-            //    {
-            //        foreach (var formatter in loader.GetFormatters())
-            //        {
-            //            outputs.Add(new
-            //            {
-            //                stock.Name,
-            //                Formatter = formatter.GetType().Name,
-            //                Output = formatter.FormatPrice(stock.Name, stock.CurrentPrice, DateTime.Now)
-            //            });
-            //        }
-            //    }
+                foreach (var stock in simulator.GetAllStocks())
+                {
+                    foreach (var formatter in loader.GetFormatters())
+                    {
+                        outputs.Add(new
+                        {
+                            stock.Name,
+                            Formatter = formatter.GetType().Name,
+                            Output = formatter.FormatPrice(stock.Name, stock.CurrentPrice, DateTime.Now)
+                        });
+                    }
+                }
 
-            //    return outputs;
-            //});
+                return outputs;
+            });
 
 
             app.Run();
