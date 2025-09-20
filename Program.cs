@@ -105,7 +105,7 @@ namespace StockPriceSimulatorAPI
                     _simulator.UpdatePrices();
 
                     await Console.Out.WriteLineAsync();
-                    await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+                    await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
                 }
             }
         }
