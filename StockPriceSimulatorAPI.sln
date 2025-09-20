@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockPriceSimulatorAPI", "StockPriceSimulatorAPI.csproj", "{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockPriceSimulatorAPI", "StockPriceSimulatorAPI.csproj", "{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "..\Contracts\Contracts.csproj", "{CC36ABC6-53F3-498C-8FE8-076188A025F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsvFormatter", "..\CsvFormatter\CsvFormatter.csproj", "{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonFormatter", "..\JsonFormatter\JsonFormatter.csproj", "{6CE3E852-5638-4007-B54E-9461055F260E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockSimulator.Tests", "..\StockSimulator.Tests\StockSimulator.Tests.csproj", "{BB6476B5-6F24-4FB1-A589-2F1A9C62669F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockAPI.tests", "..\StockAPI.tests\StockAPI.tests.csproj", "{513BA1F4-BBFE-4B58-90B6-15124C8345A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B660E9A3-0A95-4C01-8ADF-B107BAD7E6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC36ABC6-53F3-498C-8FE8-076188A025F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC36ABC6-53F3-498C-8FE8-076188A025F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC36ABC6-53F3-498C-8FE8-076188A025F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC36ABC6-53F3-498C-8FE8-076188A025F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3524EF5F-B0D0-4236-9F95-5E79CB6136B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE3E852-5638-4007-B54E-9461055F260E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE3E852-5638-4007-B54E-9461055F260E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE3E852-5638-4007-B54E-9461055F260E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE3E852-5638-4007-B54E-9461055F260E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB6476B5-6F24-4FB1-A589-2F1A9C62669F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB6476B5-6F24-4FB1-A589-2F1A9C62669F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB6476B5-6F24-4FB1-A589-2F1A9C62669F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB6476B5-6F24-4FB1-A589-2F1A9C62669F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{513BA1F4-BBFE-4B58-90B6-15124C8345A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{513BA1F4-BBFE-4B58-90B6-15124C8345A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{513BA1F4-BBFE-4B58-90B6-15124C8345A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{513BA1F4-BBFE-4B58-90B6-15124C8345A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
