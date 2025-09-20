@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.OpenApi;
 
 namespace StockPriceSimulatorAPI
@@ -17,6 +18,9 @@ namespace StockPriceSimulatorAPI
             builder.Services.AddSingleton<StockSimulator>();
             builder.Services.AddHostedService<PriceUpdateService>();
             builder.Services.AddSingleton(new PluginLoader(pluginPath));
+            builder.Services.AddSignalR();
+
+            
 
             // Add Swagger services
             builder.Services.AddEndpointsApiExplorer();
@@ -25,6 +29,7 @@ namespace StockPriceSimulatorAPI
             var app = builder.Build();
 
             app.UseHttpsRedirection();
+            app.MapHub<StockHub>("/stockhub"); // ir hub
 
             // Enable Swagger middleware
             if (app.Environment.IsDevelopment())
@@ -32,6 +37,10 @@ namespace StockPriceSimulatorAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            
+            
+
 
             // GET /prices -> all current prices
             app.MapGet("/prices", (StockSimulator simulator) =>
@@ -95,10 +104,12 @@ namespace StockPriceSimulatorAPI
         public class PriceUpdateService : BackgroundService
         {
             private readonly StockSimulator _simulator;
+            private readonly IHubContext<StockHub> _hub; // ir hub
 
-            public PriceUpdateService(StockSimulator simulator)
+            public PriceUpdateService(StockSimulator simulator, IHubContext<StockHub> hub)
             {
                 _simulator = simulator;
+                _hub = hub;
             }
 
             protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -107,11 +118,28 @@ namespace StockPriceSimulatorAPI
                 {
                     _simulator.UpdatePrices();
 
+                    // broadcast to all connected IR clients
+                    await _hub.Clients.All.SendAsync("ReceivePrices",
+                        _simulator.GetAllStocks().Select(s => new {
+                            s.Name,
+                            s.CurrentPrice
+                        }), stoppingToken);
+
                     await Console.Out.WriteLineAsync();
                     await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
                 }
             }
         }
+    }
+
+    public class StockHub : Hub
+    {
+    }
+
+    public class StockUpdate
+    {
+        public string Name { get; set; } = string.Empty;
+        public decimal CurrentPrice { get; set; }
     }
 }
 
