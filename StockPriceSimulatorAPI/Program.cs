@@ -26,6 +26,7 @@ namespace StockPriceSimulatorAPI
             var pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "plugins");
 
             // Register services
+            builder.Services.AddSingleton<PriceCalculator>();
             builder.Services.AddSingleton<StockSimulator>();
             builder.Services.AddHostedService<PriceUpdateService>();
             builder.Services.AddSignalR();

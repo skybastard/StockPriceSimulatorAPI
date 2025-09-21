@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsvFormatter", "..\CsvForma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonFormatter", "..\JsonFormatter\JsonFormatter.csproj", "{6CE3E852-5638-4007-B54E-9461055F260E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockSimulator.Tests", "..\StockSimulator.Tests\StockSimulator.Tests.csproj", "{BB6476B5-6F24-4FB1-A589-2F1A9C62669F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockPriceTests", "..\StockSimulator.Tests\StockPriceTests.csproj", "{BB6476B5-6F24-4FB1-A589-2F1A9C62669F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockAPI.tests", "..\StockAPI.tests\StockAPI.tests.csproj", "{513BA1F4-BBFE-4B58-90B6-15124C8345A4}"
 EndProject
