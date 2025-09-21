@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsvFormatter", "..\CsvForma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonFormatter", "..\JsonFormatter\JsonFormatter.csproj", "{6CE3E852-5638-4007-B54E-9461055F260E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockSimulator.Tests", "..\StockSimulator.Tests\StockSimulator.Tests.csproj", "{BB6476B5-6F24-4FB1-A589-2F1A9C62669F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockSimulator.Tests", "..\StockSimulator.Tests\StockSimulator.Tests.csproj", "{BB6476B5-6F24-4FB1-A589-2F1A9C62669F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockAPI.tests", "..\StockAPI.tests\StockAPI.tests.csproj", "{513BA1F4-BBFE-4B58-90B6-15124C8345A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockAPI.tests", "..\StockAPI.tests\StockAPI.tests.csproj", "{513BA1F4-BBFE-4B58-90B6-15124C8345A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalIRclient", "..\SignalIRclient\SignalIRclient.csproj", "{E4B047F0-3452-479B-9EF4-A050686556F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{513BA1F4-BBFE-4B58-90B6-15124C8345A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{513BA1F4-BBFE-4B58-90B6-15124C8345A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{513BA1F4-BBFE-4B58-90B6-15124C8345A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4B047F0-3452-479B-9EF4-A050686556F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4B047F0-3452-479B-9EF4-A050686556F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4B047F0-3452-479B-9EF4-A050686556F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4B047F0-3452-479B-9EF4-A050686556F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
