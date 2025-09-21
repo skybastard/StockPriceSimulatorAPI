@@ -6,7 +6,10 @@ SignalR Hub → SignalR Console Client<br>
 TCP Server → TCP Console Client<br>
 Plugin Loader (CSV / JSON formatters)<br>
 Tests (unit + integration)<br>
-Serilog logging<br>
+Serilog logging<br><br>
+
+Basic flow<br><br>
+![Tests](<Readme docs/sequence_flow.png>)<br><br>
 
 
 
