@@ -23,7 +23,7 @@ To run the tests open Test Explorer from Visual Studio and run selected tests<br
 If no errors, then right click the solution and select properties, from there go to startup projects, select all three shown in the picture. Order is not important, clients wait until API is running<br><br>
 ![Startup projects](<Readme docs/startup projects.png>)<br><br>
 Run the solution.<br>
-Three windows should show up, the API, Signal IR and TCP Client<br><br>
+Three windows should show up, the API, SignalR and TCP Client<br><br>
 ![Three windows](<Readme docs/two clients and api.png>)<br><br>
 I'm using OpenAPI, it has Swagger so it opens up the api in browser to try out GET data<br><br>
 ![Swagger home](<Readme docs/swagger homepage.png>)<br><br>
