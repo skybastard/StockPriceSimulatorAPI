@@ -6,37 +6,42 @@ namespace TestPlugins
     public class PluginLoaderTests
     {
         [Fact]
-        public void LoadsAndExecutesDummyPlugin()
+        public void LoadsCsvPluginAndFormatsPrice()
         {
-            // Arrange
-            var pluginPath = PreparePluginFolder();
+            var pluginPath = PreparePluginFolderWithRealCsvPlugin();
             var loader = new PluginLoader(pluginPath, NullLogger<PluginLoader>.Instance);
 
-            // Act
-            var formatter = loader.GetFormatters().FirstOrDefault();
-
-            // Assert
+            var formatter = loader.GetFormatters().FirstOrDefault(f => f.GetType().Name.Contains("Csv"));
             Assert.NotNull(formatter);
+
             var result = formatter!.FormatPrice("AAPL", 123.45m, new DateTime(2025, 1, 1, 10, 0, 0));
-            Assert.StartsWith("DUMMY-AAPL-123.45", result);
+            Assert.Contains("AAPL,123.45", result);
         }
-        private string PreparePluginFolder()
+        private string PreparePluginFolderWithRealCsvPlugin()
         {
-            var pluginPath = Path.Combine(Path.GetTempPath(), "plugins");
+            // Create a clean plugins folder under the test output
+            var pluginPath = Path.Combine(AppContext.BaseDirectory, "plugins");
             if (Directory.Exists(pluginPath))
                 Directory.Delete(pluginPath, true);
 
             Directory.CreateDirectory(pluginPath);
 
-            // Copy compiled plugin dll into test folder
+            // Locate the built CsvFormatter.dll (adjust path if project/target changes)
             var sourceDll = Path.Combine(
                 AppContext.BaseDirectory,
-                "DummyPluginForTest.dll"); // adjust path depending on build layout
-            var destDll = Path.Combine(pluginPath, "DummyPluginForTest.dll");
+                "..", "..", "..", "..",   // back to solution root
+                "CsvFormatter",
+                "bin", "Debug", "net8.0",
+                "CsvFormatter.dll");
+
+            if (!File.Exists(sourceDll))
+                throw new FileNotFoundException("CsvFormatter.dll not found", sourceDll);
+
+            // Copy it into the test's plugins folder
+            var destDll = Path.Combine(pluginPath, "CsvFormatter.dll");
             File.Copy(sourceDll, destDll, true);
 
             return pluginPath;
         }
-
     }
 }

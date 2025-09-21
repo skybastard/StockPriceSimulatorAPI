@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,6 +8,12 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="plugins\**" />
+    <EmbeddedResource Remove="plugins\**" />
+    <None Remove="plugins\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
@@ -20,14 +26,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-	  <Content Include="..\DummyPluginForTest\bin\$(Configuration)\net8.0\DummyPluginForTest.dll">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		  <Link>plugins\DummyPluginForTest.dll</Link>
-	  </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="plugins\" />
+    
   </ItemGroup>
 
   <ItemGroup>
