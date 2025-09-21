@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockSimulator.Tests", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockAPI.tests", "..\StockAPI.tests\StockAPI.tests.csproj", "{513BA1F4-BBFE-4B58-90B6-15124C8345A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalIRclient", "..\SignalIRclient\SignalIRclient.csproj", "{E4B047F0-3452-479B-9EF4-A050686556F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalIRclient", "..\SignalIRclient\SignalIRclient.csproj", "{E4B047F0-3452-479B-9EF4-A050686556F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
