@@ -30,7 +30,7 @@ namespace TcpStockClient
                         }
 
                         var message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        Console.WriteLine("Update:");
+                        Console.WriteLine("Update for TCP client:");
                         Console.WriteLine(message);
                     }
                 }

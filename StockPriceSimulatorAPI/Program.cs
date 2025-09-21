@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Text.Json;
+using Serilog;
 
 namespace StockPriceSimulatorAPI
 {
@@ -11,18 +12,33 @@ namespace StockPriceSimulatorAPI
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
             var builder = WebApplication.CreateBuilder(args);
-         
+
+            // Replace default logger to use Serilog
+            builder.Host.UseSerilog();
+
             var pluginPath = Path.Combine(Directory.GetCurrentDirectory(), "plugins");
-
-            
-
 
             // Register services
             builder.Services.AddSingleton<StockSimulator>();
             builder.Services.AddHostedService<PriceUpdateService>();
-            builder.Services.AddSingleton(new PluginLoader(pluginPath));
             builder.Services.AddSignalR();
+
+            // Services with logger
+            builder.Services.AddSingleton<PluginLoader>(sp =>
+            {
+                var logger = sp.GetRequiredService<ILogger<PluginLoader>>();
+                var env = sp.GetRequiredService<IHostEnvironment>();
+                var pluginPath = Path.Combine(env.ContentRootPath, "plugins"); // safe relative path
+                return new PluginLoader(pluginPath, logger);
+            });
+            
 
             // Add TCP server
             builder.Services.AddHostedService<TcpBroadcastService>();
@@ -123,7 +139,7 @@ namespace StockPriceSimulatorAPI
     public class PriceUpdateService : BackgroundService
     {
         private readonly StockSimulator _simulator;
-        private readonly IHubContext<StockHub> _hub; // ir hub
+        private readonly IHubContext<StockHub> _hub; // Signal IR hub
 
         public PriceUpdateService(StockSimulator simulator, IHubContext<StockHub> hub)
         {
@@ -145,7 +161,7 @@ namespace StockPriceSimulatorAPI
                     }), stoppingToken);
 
                 await Console.Out.WriteLineAsync();
-                await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
+                await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
             }
         }
     }
@@ -153,57 +169,97 @@ namespace StockPriceSimulatorAPI
     public class TcpBroadcastService : BackgroundService
     {
         private readonly StockSimulator _simulator;
+        private readonly ILogger<TcpBroadcastService> _logger;
         private readonly List<TcpClient> _clients = new();
+        private TcpListener? _listener;
 
-        public TcpBroadcastService(StockSimulator simulator)
+        public TcpBroadcastService(StockSimulator simulator, ILogger<TcpBroadcastService> logger)
         {
             _simulator = simulator;
+            _logger = logger;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var listener = new TcpListener(IPAddress.Loopback, 5002); // TCP port
-            listener.Start();
-            Console.WriteLine("TCP server listening on port 5002");
-
-            // accept clients in background
-            _ = Task.Run(async () =>
+            try
             {
-                while (!stoppingToken.IsCancellationRequested)
+                _listener = new TcpListener(IPAddress.Loopback, 5002);
+                _listener.Start();
+                _logger.LogInformation("TCP server started on port {Port}", 5002);
+
+                // accept clients in background
+                _ = Task.Run(async () =>
                 {
-                    var client = await listener.AcceptTcpClientAsync(stoppingToken);
-                    lock (_clients) _clients.Add(client);
-                    Console.WriteLine("TCP client connected");
-                }
-            }, stoppingToken);
-
-            // broadcast updates every 5s
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                var snapshot = _simulator.GetAllStocks()
-                    .Select(s => $"{s.Name},{s.CurrentPrice},{DateTime.Now:HH:mm:ss}")
-                    .ToList();
-
-                var message = string.Join(Environment.NewLine, snapshot) + Environment.NewLine;
-                var data = Encoding.UTF8.GetBytes(message);
-
-                lock (_clients)
-                {
-                    foreach (var client in _clients.ToList())
+                    while (!stoppingToken.IsCancellationRequested)
                     {
                         try
                         {
-                            client.GetStream().Write(data, 0, data.Length);
+                            var client = await _listener.AcceptTcpClientAsync(stoppingToken);
+                            lock (_clients) _clients.Add(client);
+                            _logger.LogInformation("TCP client connected from {Address}", client.Client.RemoteEndPoint);
                         }
-                        catch
+                        catch (OperationCanceledException)
                         {
-                            // remove broken clients
-                            _clients.Remove(client);
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError(ex, "Error while accepting a TCP client");
                         }
                     }
-                }
+                }, stoppingToken);
 
-                await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+                // broadcast loop
+                while (!stoppingToken.IsCancellationRequested)
+                {
+                    try
+                    {
+                        var snapshot = _simulator.GetAllStocks()
+                            .Select(s => $"{s.Name},{s.CurrentPrice},{DateTime.Now:HH:mm:ss}")
+                            .ToList();
+
+                        var message = string.Join(Environment.NewLine, snapshot) + Environment.NewLine;
+                        var data = Encoding.UTF8.GetBytes(message);
+
+                        lock (_clients)
+                        {
+                            foreach (var client in _clients.ToList())
+                            {
+                                try
+                                {
+                                    client.GetStream().Write(data, 0, data.Length);
+                                }
+                                catch (Exception ex)
+                                {
+                                    _logger.LogWarning(ex, "Removing disconnected client {Address}", client.Client.RemoteEndPoint);
+                                    _clients.Remove(client);
+                                    client.Dispose();
+                                }
+                            }
+                        }
+
+                        _logger.LogDebug("Broadcasted stock update to {Count} TCP clients", _clients.Count);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Error during TCP broadcast loop");
+                    }
+
+                    await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+                }
+            }
+            finally
+            {
+                _listener?.Stop();
+                lock (_clients)
+                {
+                    foreach (var client in _clients)
+                    {
+                        client.Dispose();
+                    }
+                    _clients.Clear();
+                }
+                _logger.LogInformation("TCP server shut down.");
             }
         }
     }
