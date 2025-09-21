@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.OpenApi;
+using System.Text.Json;
 
 namespace StockPriceSimulatorAPI
 {
@@ -81,11 +82,27 @@ namespace StockPriceSimulatorAPI
                 {
                     foreach (var formatter in loader.GetFormatters())
                     {
+                        var output = formatter.FormatPrice(stock.Name, stock.CurrentPrice, DateTime.Now);
+
+                        object finalOutput;
+
+                        // detect JSON output by formatter name
+                        if (formatter.GetType().Name.Contains("Json", StringComparison.OrdinalIgnoreCase))
+                        {
+                            // parse the JSON string back into a JsonElement so it’s a proper object in Swagger
+                            finalOutput = JsonDocument.Parse(output).RootElement.Clone();
+                        }
+                        else
+                        {
+                            // keep plain text (CSV, etc.)
+                            finalOutput = output;
+                        }
+
                         outputs.Add(new
                         {
-                            stock.Name,
-                            Formatter = formatter.GetType().Name,
-                            Output = formatter.FormatPrice(stock.Name, stock.CurrentPrice, DateTime.Now)
+                            name = stock.Name,
+                            formatter = formatter.GetType().Name,
+                            output = finalOutput
                         });
                     }
                 }
