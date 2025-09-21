@@ -1,3 +1,16 @@
+This project has a stock price simulator, REST api updates stocks for 5 stocks every five seconds and keeps history for each stock for the last 10 prices.<br><br>
+Here are the basic features:<br>
+Stock Simulator (core)<br>
+REST API (Swagger, endpoints)<br>
+SignalR Hub → SignalR Console Client<br>
+TCP Server → TCP Console Client<br>
+Plugin Loader (CSV / JSON formatters)<br>
+Tests (unit + integration)<br>
+Serilog logging<br>
+
+
+
+
 Visual Studio was used to create this project.<br>
 To start, clone the repo using VS<br>
 It will load folders tree, open the folder StockPriceSimulatorAPI and double click StockPriceSimulatorAPI.sln<br>
