@@ -15,13 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockSimulator.Tests", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockAPI.tests", "..\StockAPI.tests\StockAPI.tests.csproj", "{513BA1F4-BBFE-4B58-90B6-15124C8345A4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalIRclient", "..\SignalIRclient\SignalIRclient.csproj", "{E4B047F0-3452-479B-9EF4-A050686556F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalRclient", "..\SignalIRclient\SignalRclient.csproj", "{E4B047F0-3452-479B-9EF4-A050686556F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpStockClient", "..\TcpStockClient\TcpStockClient.csproj", "{9B6135CD-BF93-42F1-82A5-A15C4B537221}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcpStockClient", "..\TcpStockClient\TcpStockClient.csproj", "{9B6135CD-BF93-42F1-82A5-A15C4B537221}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPlugins", "..\TestPlugins\TestPlugins.csproj", "{23633C8E-1779-4E9D-9E3B-0DC29817EF9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPlugins", "..\TestPlugins\TestPlugins.csproj", "{23633C8E-1779-4E9D-9E3B-0DC29817EF9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyPluginForTest", "..\DummyPluginForTest\DummyPluginForTest.csproj", "{A1AE4C14-0576-46D3-B8D2-F7DD7B17F000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyPluginForTest", "..\DummyPluginForTest\DummyPluginForTest.csproj", "{A1AE4C14-0576-46D3-B8D2-F7DD7B17F000}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

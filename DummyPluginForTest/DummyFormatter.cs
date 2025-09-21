@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using System;
 
 namespace DummyPluginForTest
 {
