@@ -20,6 +20,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+	  <Content Include="..\DummyPluginForTest\bin\$(Configuration)\net8.0\DummyPluginForTest.dll">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		  <Link>plugins\DummyPluginForTest.dll</Link>
+	  </Content>
   </ItemGroup>
 
   <ItemGroup>
