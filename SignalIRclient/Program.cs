@@ -14,7 +14,7 @@ namespace SignalIRclient
             connection.On<IEnumerable<StockUpdate>>("ReceivePrices", prices =>
             {
                 Console.WriteLine();
-                Console.WriteLine("Stock updates Signal IR:");
+                Console.WriteLine("Stock updates SignalR:");
                 foreach (var stock in prices)
                 {
                     Console.WriteLine($"{stock.Name}: {stock.CurrentPrice}");
