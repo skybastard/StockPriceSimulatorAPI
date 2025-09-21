@@ -16,7 +16,7 @@ Basic flow<br><br>
 
 Visual Studio was used to create this project.<br>
 To start, clone the repo using VS<br>
-It will load folders tree, open the folder StockPriceSimulatorAPI and double click StockPriceSimulatorAPI.sln<br>
+First time after cloning it might only load the load folders tree, if so, open the folder StockPriceSimulatorAPI and double click StockPriceSimulatorAPI.sln<br>
 Build the solution<br>
 To run the tests open Test Explorer from Visual Studio and run selected tests<br><br>
 ![Tests](<Readme docs/VS test explorer.png>)<br><br>
