@@ -58,11 +58,7 @@ namespace StockPriceSimulatorAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            
-            
-
-
+                        
             // GET /prices -> all current prices
             app.MapGet("/prices", (StockSimulator simulator) =>
             {
@@ -109,7 +105,7 @@ namespace StockPriceSimulatorAPI
                         // detect JSON output by formatter name
                         if (formatter.GetType().Name.Contains("Json", StringComparison.OrdinalIgnoreCase))
                         {
-                            // parse the JSON string back into a JsonElement so it’s a proper object in Swagger
+                            // parse the JSON string back into a JsonElement so it’s a proper object in Swagger, so output is like in task example
                             finalOutput = JsonDocument.Parse(output).RootElement.Clone();
                         }
                         else
@@ -266,12 +262,6 @@ namespace StockPriceSimulatorAPI
 
     public class StockHub : Hub
     {
-    }
-
-    public class StockUpdate
-    {
-        public string Name { get; set; } = string.Empty;
-        public decimal CurrentPrice { get; set; }
     }
 }
 
