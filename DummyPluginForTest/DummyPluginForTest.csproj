@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <BaseOutputPath>C:\Users\emamrat\source\repos\Hello</BaseOutputPath>
+    <BaseOutputPath>C:\Users\emamrat\source\repos\Homework\TestPlugins\plugins</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
