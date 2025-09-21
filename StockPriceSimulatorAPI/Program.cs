@@ -162,9 +162,9 @@ namespace StockPriceSimulatorAPI
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var listener = new TcpListener(IPAddress.Loopback, 5272); // TCP port
+            var listener = new TcpListener(IPAddress.Loopback, 5002); // TCP port
             listener.Start();
-            Console.WriteLine("TCP server listening on port 5272");
+            Console.WriteLine("TCP server listening on port 5002");
 
             // accept clients in background
             _ = Task.Run(async () =>
