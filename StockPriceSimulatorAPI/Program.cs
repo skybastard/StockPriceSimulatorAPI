@@ -234,8 +234,6 @@ namespace StockPriceSimulatorAPI
                                 }
                             }
                         }
-
-                        _logger.LogDebug("Broadcasted stock update to {Count} TCP clients", _clients.Count);
                     }
                     catch (Exception ex)
                     {
